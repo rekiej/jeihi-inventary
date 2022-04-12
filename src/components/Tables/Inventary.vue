@@ -50,8 +50,8 @@
     <div class="absolute bottom-auto content-center z-50 w-96 p-10 border rounded-md mx-auto my-auto inset-0 bg-gray-100 top-80" v-show="deleteProducto">
         <p>¿Esta seguro de que desea borrar el resgistro?</p>
         <div class="text-white mt-5 w-full">
-            <button @click="confirmDelete(false)" class="border bg-red-500 border-red-600 hover:bg-red-600 rounded-md p-2 mx-2">No</button>
-            <button @click="confirmDelete(true)" class="border bg-green-500 border-green-600 hover:bg-green-600 rounded-md p-2 mx-2">Si</button>
+            <button-acept @click="confirmDelete(true)" content="Si"/>
+            <button-cancel @click="confirmDelete(false)" content="No"/>
         </div>
     </div>
     </div>    
