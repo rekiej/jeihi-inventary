@@ -1,5 +1,6 @@
 <template>
     <div class="w-full z-0">
+        <!--//////////////Agregar o editar productos inventario////////////////////-->
         <div class="conten-center">
             <h2 class="my-5 text-lg"><b>Agregar producto</b></h2>
           
@@ -19,34 +20,37 @@
             </div>
 
         </div>
-        <table id="pedidos" class="table-auto align-middle content-center mx-auto my-10 w-4/6 h-2/4">
-            <thead>
-                <tr>
-                    <th class="border-2 px-2 py-2">#</th>
-                    <th class="border-2 px-2 py-2">Id</th>
-                    <th class="border-2 px-4 py-2">Tipo Producto</th>
-                    <th class="border-2 px-4 py-2">Marca</th>
-                    <th class="border-2 px-4 py-2">Descripción</th>
-                    <th class="border-2 px-4 py-2">Cantidad</th>
-                    <th class="border-2 px-4 py-2"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(producto, k) in Productos" :key="k">
-                    <td class="text-center border-2 px-2 py-4">{{k+1}}</td>
-                    <td class="text-center border-2 px-2 py-4">{{producto.Id}}</td>
-                    <td class="text-center border-2 px-2 py-4">{{producto.TipoProducto}}</td>
-                    <td class="text-center border-2 px-2 py-4">{{producto.Marca}}</td>
-                    <td class="text-center border-2 px-2 py-4">{{producto.Descripcion}}</td>
-                    <td class="text-center border-2 px-2 py-4">{{producto.Cantidad}}</td>
-                    <td class="text-center border-2 px-2 py-4">
-                        <button @click="selectUpdate(k)"><icon-edit/></button>
-                        <button @click="popUpConfirmation(k)"><icon-delete/></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    <!--//////////////POP UP////////////////////-->
+        <!--//////////////Tabla de inventario////////////////////-->
+        <div>
+            <table id="pedidos" class="table-fixed align-middle content-center mx-auto my-10 w-4/6 h-2/4">
+                <thead>
+                    <tr>
+                        <th class="border-2 px-2 py-2">#</th>
+                        <th class="border-2 px-2 py-2">Id</th>
+                        <th class="border-2 px-4 py-2">Tipo Producto</th>
+                        <th class="border-2 px-4 py-2">Marca</th>
+                        <th class="border-2 px-4 py-2">Descripción</th>
+                        <th class="border-2 px-4 py-2">Cantidad</th>
+                        <th class="border-2 px-4 py-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(producto, k) in Productos" :key="k">
+                        <td class="text-center border-2 px-2 py-4">{{k+1}}</td>
+                        <td class="text-center border-2 px-2 py-4">{{producto.Id}}</td>
+                        <td class="text-center border-2 px-2 py-4">{{producto.TipoProducto}}</td>
+                        <td class="text-center border-2 px-2 py-4">{{producto.Marca}}</td>
+                        <td class="text-center border-2 px-2 py-4">{{producto.Descripcion}}</td>
+                        <td class="text-center border-2 px-2 py-4">{{producto.Cantidad}}</td>
+                        <td class="text-center border-2 px-2 py-4">
+                            <button @click="selectUpdate(k)"><icon-edit/></button>
+                            <button @click="popUpConfirmation(k)"><icon-delete/></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    <!--//////////////Ventana confirmaicon para eliminar////////////////////-->
     <div class="absolute bottom-auto content-center z-50 w-96 p-10 border rounded-md mx-auto my-auto inset-0 bg-gray-100 top-80" v-show="deleteProducto">
         <p>¿Esta seguro de que desea borrar el resgistro?</p>
         <div class="text-white mt-5 w-full">

@@ -2,7 +2,7 @@
   <div class="h-full">
     <div class="flex h-full">
       <side-bar/>
-      <router-view class="w-full h-screen place-content-center mx-auto text-center" />
+      <router-view class="w-full h-screen place-content-center mx-auto text-center overflow-auto" />
     </div>
   </div>
 </template>

@@ -4,7 +4,7 @@ import Inventary from "@/components/Tables/Inventary.vue";
 
 const routes = [
   { path: "/login", component: Login },
-  { path: "/inventary", component: Inventary },
+  { path: "/", component: Inventary },
 ];
 
 const history = createWebHistory();
