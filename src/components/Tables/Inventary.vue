@@ -14,8 +14,8 @@
                 <p class="my-10 text-red-600">{{msg}}</p>
             </div>
             <div class="my-5 text-white">
-                <button class="border bg-green-500 border-green-600 hover:bg-green-600 rounded-md p-2 mx-2" type="submit" @click="editando ? updateInventary() : addElement()">Agregar</button> 
-                <button v-show="editando" @click="cleanInputs()" class="border bg-red-500 border-red-600 hover:bg-red-600 rounded-md p-2 mx-2">Cancelar Edicion</button>
+                <button-acept @click="editando ? updateInventary() : addElement()" :content="editando ? 'Guardar cambios' : 'Agregar'"/>
+                <button-cancel v-show="editando" @click="cleanInputs()" content="Cancelar Edicion"/>
             </div>
 
         </div>
@@ -61,13 +61,18 @@
 import IconDelete from '@/assets/IconDelete.vue'
 import IconEdit from '@/assets/IconEdit.vue'
 import InputV from '@/components/Layout/Inputs.vue'
+import ButtonAcept from '@/components/Layout/ButtonAccept.vue'
+import ButtonCancel from '@/components/Layout/ButtonCancel.vue'
 
 export default {
     name: 'InventaryTable',
     components:{
         IconDelete,
         IconEdit,
-        InputV
+        InputV,
+        ButtonAcept,
+        ButtonCancel
+        
     },
     data() {
         return {
@@ -148,9 +153,8 @@ export default {
                 producto.Marca = this.Marca;
                 producto.Descripcion = this.Descripcion;
                 producto.Cantidad = this.Cantidad;
-
+                
                 this.cleanInputs();
-
 
                 return this.Productos.push(producto);
             } else{
@@ -166,6 +170,11 @@ export default {
             this.Descripcion = '';
             this.Cantidad = '';
             this.key = '';
+            this.editando = false;
+            if(this.validar == true){
+                console.log('cambiando validar')
+                this.validar = false;
+            }
         },
 
         selectUpdate(k){
@@ -177,9 +186,9 @@ export default {
             this.Cantidad = this.Productos[k].Cantidad;
         },
 
-        updateInventary(k){
-            console.log('edit')
-            if(this.validateInputs()){
+        updateInventary(){
+            var k = this.key;
+            if(this.validateInputs() == true){
                 this.Productos[k].TipoProducto = this.TipoProducto;
                 this.Productos[k].Marca = this.Marca;
                 this.Productos[k].Descripcion = this.Descripcion;
@@ -194,13 +203,14 @@ export default {
         },
 
         validateInputs(){
-            console.log('entro')
             if(this.TipoProducto == '' ||
-            this.Marca =='' ||
+            this.Marca == '' ||
             this.Descripcion == '' ||
-            this.Cantidad ==''){
+            this.Cantidad == ''){
+                console.log('entro a false')
                 return false
             } else{
+                console.log('entro a true')
                 return true
             }
         }
